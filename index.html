@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharing Blessing - Empowering Students in Rwanda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #C17D4A;
+            --primary-dark: #9A5F35;
+            --secondary: #2D5F3F;
+            --accent: #D4A574;
+            --gold: #D4A574;
+            --text-dark: #1a1a1a;
+            --text-light: #4a4a4a;
+            --bg-light: #FFFBF5;
+            --bg-white: #FFFFFF;
+            --shadow: rgba(193, 125, 74, 0.15);
+        }
+
+        .dark {
+            --primary: #D4A574;
+            --primary-dark: #C17D4A;
+            --secondary: #4A9B68;
+            --accent: #E8C9A0;
+            --gold: #E8C9A0;
+            --text-dark: #f0f0f0;
+            --text-light: #c0c0c0;
+            --bg-light: #1a1a1a;
+            --bg-white: #252525;
+            --shadow: rgba(212, 165, 116, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            padding: 5px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.1);
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 120px 0 100px;
+            background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            opacity: 0.08;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, 30px) rotate(5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .hero-logo img {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 30px var(--shadow));
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            animation-delay: 0.2s;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero .mission-statement {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        section h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--bg-white);
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+
+        .about strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Leadership Section */
+        .leadership {
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+        }
+
+        .leader-card {
+            background-color: var(--bg-white);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 15px 50px var(--shadow);
+            border: 2px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 150px;
+            color: var(--accent);
+            opacity: 0.3;
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1;
+        }
+
+        .leader-card h3 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .leader-card .title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .leader-card .affiliation {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Supporters Section */
+        .supporters {
+            background-color: var(--bg-white);
+        }
+
+        .supporters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .supporter-card {
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .supporter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .supporter-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .supporter-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .supporter-card .role {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Impact Section */
+        .impact {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .impact h2 {
+            color: white;
+        }
+
+        .impact .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        /* Vision Section */
+        .vision {
+            background-color: var(--bg-white);
+            text-align: center;
+        }
+
+        .vision-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vision p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            line-height: 1.9;
+            margin-bottom: 2rem;
+        }
+
+        .vision-highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--gold) 100%);
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .dark .vision-highlight {
+            color: var(--bg-light);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, #1F4830 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-section .cta-button {
+            background: white;
+            color: var(--secondary);
+        }
+
+        .cta-section .cta-button:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-white);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 3px solid var(--accent);
+        }
+
+        footer p {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 600;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
+            }
+
+            .hero-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .hero .mission-statement {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .supporters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-stats {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta-button {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
+
+            .leader-card {
+                padding: 2rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <img src="https://pfst.cf2.poecdn.net/base/image/14bdee1cd11697cc5c18cbac10cac5a154adaccf8ae623c3e0efe613871265a3?w=1024&h=1024" alt="Sharing Blessing Logo" class="logo-img">
+                <span class="logo-text">Sharing Blessing</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#supporters">Supporters</a></li>
+                <li><a href="#impact">Impact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content container">
+            <h1>Sharing Blessing</h1>
+            <p class="tagline">Empowering Rwanda's Future, One Student at a Time</p>
+            <p class="mission-statement">
+                A transformative initiative dedicated to uplifting young students in Rwanda's Southern Province through education, mentorship, and community support—with a vision to expand our impact across the globe.
+            </p>
+            <a href="#contact" class="cta-button">Join Our Mission</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Our Story</h2>
+            <p class="section-subtitle">Building Brighter Futures Through Education</p>
+            <div class="about-content">
+                <p>
+                    <strong>Sharing Blessing</strong> is more than an initiative—it's a movement born from the belief that every young person deserves access to quality education and the opportunity to reach their full potential.
+                </p>
+                <p>
+                    Beginning in the <strong>Southern Province of Rwanda</strong>, particularly in the districts of Huye and Gisagara, we provide vital educational support, resources, and mentorship to students who need it most. Our holistic approach addresses not just academic needs, but the whole student—nurturing their dreams, building confidence, and creating pathways to success.
+                </p>
+                <p>
+                    What started as a local effort to help students in our community has grown into an initiative with <strong>international aspirations</strong>. We envision a future where Sharing Blessing reaches students across borders, creating a global network of young leaders empowered to transform their communities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership" class="leadership">
+        <div class="container">
+            <h2>Visionary Leadership</h2>
+            <p class="section-subtitle">Meet the heart behind Sharing Blessing</p>
+            <div class="leader-card">
+                <h3>Niyomukiza Naomie</h3>
+                <p class="title">Founder & Chief Executive Officer</p>
+                <p class="affiliation">Agahozo Shalom Youth Village • Final Year Student</p>
+                <p>
+                    As the founder and CEO of Sharing Blessing, Niyomukiza Naomie brings passion, vision, and unwavering commitment to empowering Rwanda's youth. Currently in her final year at Agahozo Shalom Youth Village, her deep connection to the institution and profound understanding of the challenges facing students in the Southern Province fuel her dedication to creating lasting change. Through her leadership, Sharing Blessing has become a beacon of hope, transforming lives and building futures one student at a time.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="supporters" class="supporters">
+        <div class="container">
+            <h2>Our Supporters</h2>
+            <p class="section-subtitle">Built on a foundation of community partnership and shared vision</p>
+            <div class="supporters-grid">
+                <div class="supporter-card">
+                    <div class="supporter-icon">🏫</div>
+                    <h3>Agahozo Shalom Youth Village</h3>
+                    <p class="role">Primary Institutional Partner</p>
+                </div>
+                <div class="supporter-card">
+                    <div class="supporter-icon">🏛️</div>
+                    <h3>Mayor of Huye District</h3>
+                    <p class="role">Regional Government Partner</p>
+                </div>
+                <div class="supporter-card">
+                    <div class="supporter-icon">🏛️</div>
+                    <h3>Mayor of Gisagara District</h3>
+                    <p class="role">Regional Government Partner</p>
+                </div>
+                <div class="supporter-card">
+                    <div class="supporter-icon">👨‍🏫</div>
+                    <h3>Laurien Ikuzwe</h3>
+                    <p class="role">Teacher, Liquidnet Family High School of English</p>
+                </div>
+                <div class="supporter-card">
+                    <div class="supporter-icon">👔</div>
+                    <h3>Shadrack Niyonzima</h3>
+                    <p class="role">Student Life Manager, Agahozo Shalom Youth Village</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="impact">
+        <div class="container">
+            <h2>Our Impact</h2>
+            <p class="section-subtitle">Measuring success through transformed lives</p>
+            <div class="impact-stats">
+                <div class="stat">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Districts Served</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Dreams Empowered</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">Shared Vision</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision">
+        <div class="container">
+            <h2>Our Vision</h2>
+            <p class="section-subtitle">Looking beyond borders, dreaming without limits</p>
+            <div class="vision-content">
+                <p>
+                    While our roots are firmly planted in Rwanda's Southern Province, our vision extends far beyond. We are building a model of educational empowerment that can be replicated globally—creating a network of support that transcends borders and cultures.
+                </p>
+                <div class="vision-highlight">
+                    "From Rwanda to the world—empowering students, transforming communities, building a brighter tomorrow."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Be Part of the Change</h2>
+            <p>Together, we can create opportunities that transform lives and build a brighter future for students everywhere.</p>
+            <a href="mailto:sharingblessing@contact.rw" class="cta-button">Get Involved</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sharing Blessing Initiative. All rights reserved.</p>
+            <p>Founded by Niyomukiza Naomie | Supported by Agahozo Shalom Youth Village</p>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#leadership">Leadership</a>
+                <a href="#supporters">Supporters</a>
+                <a href="#impact">Impact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode detection and toggle
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            if (!section.classList.contains('hero')) {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            }
+        });
+    </script>
+</body>
+</html>
